@@ -1,12 +1,22 @@
 import './HeaderCartBtn.css'
 import CartSvgIcon from './CartSvgIcon'
+import { useContext } from 'react'
+import CartContext from '../../store/cart-context'
 
-const HeaderCartBtn = () => {
+const HeaderCartBtn = (props) => {
+    const cartCtc = useContext(CartContext)
+
+    let numberOfItems = cartCtc.items.reduce(
+        (prev, item) => {return prev + item.amount}, 0)
+
+    
     return (
-        <button className='button'>
-            <span className='icon'> <CartSvgIcon/> </span>
+        <button className='button' onClick={props.onClick}>
+            <span className='icon'>
+                <CartSvgIcon />
+            </span>
             <span> Your Cart </span>
-            <span className='badge'> 0.00 </span>
+            <span className='badge'> {numberOfItems} </span>  
         </button>
     )
 }

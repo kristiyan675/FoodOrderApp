@@ -1,12 +1,14 @@
-import './InputComponent.css'
+import React from 'react';
+import './InputComponent.css';
 
-const MealInput = (props) => {
+
+const MealInput = React.forwardRef((props, ref) => {
     return (
         <div className="input">
         <label htmlFor={props.input.id}>{props.label}</label>
-        <input {...props.input}></input>
+        <input ref = { ref } {...props.input}></input>
         </div>
-        )
-}
+        );
+});
 
-export default MealInput
+export default MealInput;
